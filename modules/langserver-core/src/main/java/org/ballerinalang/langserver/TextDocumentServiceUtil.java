@@ -24,9 +24,12 @@ import org.ballerinalang.langserver.workspace.WorkspaceDocumentManager;
 import org.ballerinalang.langserver.workspace.repository.WorkspacePackageRepository;
 import org.ballerinalang.repository.PackageRepository;
 import org.ballerinalang.util.diagnostic.DiagnosticListener;
+import org.eclipse.lsp4j.Position;
+import org.eclipse.lsp4j.Range;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.wso2.ballerinalang.compiler.Compiler;
+import org.wso2.ballerinalang.compiler.tree.BLangNode;
 import org.wso2.ballerinalang.compiler.tree.BLangPackage;
 import org.wso2.ballerinalang.compiler.util.CompilerContext;
 import org.wso2.ballerinalang.compiler.util.CompilerOptions;
@@ -170,5 +173,32 @@ public class TextDocumentServiceUtil {
         } finally {
             return path;
         }
+    }
+
+    /**
+     *  Get Range from Blang node.
+     * @param node              Blang node
+     * @return                  Range
+     */
+    public static Range getRange(BLangNode node) {
+        Range r = new Range();
+
+        int startLine = node.getPosition().getStartLine() - 1; // LSP range is 0 based
+        int startChar = node.getPosition().getStartColumn() - 1;
+        int endLine = node.getPosition().getEndLine() - 1;
+        int endChar = node.getPosition().getEndColumn() - 1;
+
+        if (endLine <= 0) {
+            endLine = startLine;
+        }
+
+        if (endChar <= 0) {
+            endChar = startChar + 1;
+        }
+
+        r.setStart(new Position(startLine, startChar));
+        r.setEnd(new Position(endLine, endChar));
+
+        return r;
     }
 }

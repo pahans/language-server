@@ -43,7 +43,7 @@ public class DefinitionUtil {
      * @param hoverContext context of the hover.
      * @return position
      */
-    public static List<Location> getDefinitionPosition(TextDocumentServiceContext hoverContext,
+    public static List<Location> getDefinitionLocation(TextDocumentServiceContext hoverContext,
                                                        BLangPackage currentBLangPackage) {
         List<Location> contents = new ArrayList<>();
         if (hoverContext.get(HoverKeys.SYMBOL_KIND_OF_HOVER_NODE_KEY) == null) {

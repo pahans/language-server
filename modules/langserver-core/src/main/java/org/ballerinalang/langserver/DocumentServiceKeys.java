@@ -21,6 +21,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.Vocabulary;
 import org.ballerinalang.langserver.completions.PossibleToken;
+import org.eclipse.lsp4j.Location;
 import org.eclipse.lsp4j.SymbolInformation;
 import org.eclipse.lsp4j.TextDocumentPositionParams;
 import org.wso2.ballerinalang.compiler.semantics.model.SymbolTable;
@@ -54,5 +55,9 @@ public class DocumentServiceKeys {
     public static final LanguageServerContext.Key<SymbolTable> SYMBOL_TABLE_KEY
             = new LanguageServerContext.Key<>();
     public static final LanguageServerContext.Key<List<SymbolInformation>> SYMBOL_LIST_KEY
+            = new LanguageServerContext.Key<>();
+    public static final LanguageServerContext.Key<List<Location>> DEFINITIONS_LIST_KEY
+            = new LanguageServerContext.Key<>();
+    public static final LanguageServerContext.Key<Object> ACTIVE_NODE_CONTEXT
             = new LanguageServerContext.Key<>();
 }

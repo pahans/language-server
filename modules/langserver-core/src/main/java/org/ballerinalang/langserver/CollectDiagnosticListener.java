@@ -17,6 +17,7 @@ package org.ballerinalang.langserver;
 
 import org.ballerinalang.util.diagnostic.Diagnostic;
 import org.ballerinalang.util.diagnostic.DiagnosticListener;
+
 import java.util.List;
 
 /**
